@@ -12,9 +12,13 @@ export default function createDOMElement(virtualDOM) {
     newElement = document.createElement(virtualDOM.type)
 
     updateNodeElement(newElement, virtualDOM)
-
-    virtualDOM.children.map(child => mountElement(child, newElement))
   }
+
+  // 将 virtualDOM 挂载到真实的 DOM 对象的属性中
+  // 方便在对比时获取其 virtualDOM
+  newElement._virtualDOM = virtualDOM
+
+  virtualDOM.children.map(child => mountElement(child, newElement))
 
   return newElement
 }
