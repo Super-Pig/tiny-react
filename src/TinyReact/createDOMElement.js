@@ -1,31 +1,19 @@
 import mountElement from "./mountElement"
+import updateNodeElement from "./updateNodeElement"
 
 export default function createDOMElement(virtualDOM) {
-  const { type, children, props } = virtualDOM
   let newElement = null
 
-  if (type === 'text') {
+  if (virtualDOM.type === 'text') {
     // 文本节点
-    newElement = document.createTextNode(props.textContent)
+    newElement = document.createTextNode(virtualDOM.props.textContent)
   } else {
     // 元素节点
     newElement = document.createElement(virtualDOM.type)
 
-    Object.entries(props).forEach(([propName, value]) => {
-      if (propName !== 'children') {
-        if (propName === 'className') {
-          // class 属性
-          newElement.setAttribute('class', value)
-        } else if (propName.slice(0, 2) === 'on') {
-          // 事件绑定
-          newElement.addEventListener(propName.slice(2).toLowerCase(), value)
-        } else {
-          newElement.setAttribute(propName, value)
-        }
-      }
-    })
+    updateNodeElement(newElement, virtualDOM)
 
-    children.map(child => mountElement(child, newElement))
+    virtualDOM.children.map(child => mountElement(child, newElement))
   }
 
   return newElement

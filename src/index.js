@@ -1,23 +1,33 @@
 import TinyReact from "./TinyReact"
 
-const virtualDOM = (
-  <div className="container">
-    <h1>你好 Tiny React</h1>
-    <h2 data-test="test">(编码必杀技)</h2>
-    <div>
-      嵌套1 <div>嵌套1.1</div>
-    </div>
-    <h3>(观察：这个将会改变)</h3>
-    {2 == 1 && <div>如果2和1相等渲染当前内容</div>}
-    {2 == 2 && <div>2</div>}
-    <span>这是一段内容</span>
-    <button onClick={() => alert('你好')}>点击我</button>
-    <h3>这个将会删除</h3>
-    2,3
-    <input type='text' value='123' />
+// const virtualDOM = (
+//   <div className="container">
+//     <h1>你好 Tiny React</h1>
+//     <h2 data-test="test">(编码必杀技)</h2>
+//     <div>
+//       嵌套1 <div>嵌套1.1</div>
+//     </div>
+//     <h3>(观察：这个将会改变)</h3>
+//     {2 == 1 && <div>如果2和1相等渲染当前内容</div>}
+//     {2 == 2 && <div>2</div>}
+//     <span>这是一段内容</span>
+//     <button onClick={() => alert('你好')}>点击我</button>
+//     <h3>这个将会删除</h3>
+//     2,3
+//     <input type='text' value='123' />
+//   </div>
+// )
+
+function Garry(props = {}) {
+  return <div>
+    Hello
+    <Peng />
   </div>
-)
+}
 
-TinyReact.render(virtualDOM, document.getElementById('root'))
+function Peng() {
+  return <h1>Peng</h1>
+}
 
-console.log(virtualDOM)
+TinyReact.render(<Garry className='container' />, document.getElementById('root'))
+
