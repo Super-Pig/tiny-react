@@ -2,6 +2,7 @@ import mountElement from "./mountElement";
 import mountComponent from "./mountComponent";
 import isFunction from "./isFunction";
 import updateTextNode from "./updateTextNode";
+import updateNodeElement from "./updateNodeElement";
 
 export default function diff(virtualDOM, container, oldDOM) {
   const oldVirtualDOM = oldDOM && oldDOM._virtualDOM
@@ -16,6 +17,8 @@ export default function diff(virtualDOM, container, oldDOM) {
       updateTextNode(virtualDOM, oldVirtualDOM, oldDOM)
     } else {
       // 更新元素属性
+      updateNodeElement(oldDOM, virtualDOM, oldVirtualDOM)
+      oldDOM._virtualDOM = virtualDOM
     }
 
     virtualDOM.children.forEach((child, i) => {

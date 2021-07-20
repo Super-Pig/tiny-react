@@ -1,16 +1,39 @@
-export default function updateNodeElement(newElement, virtualDOM) {
-  Object.entries(virtualDOM.props).forEach(([propName, value]) => {
-    if (propName !== 'children') {
+export default function updateNodeElement(newElement, virtualDOM, oldVirtualDOM) {
+  const newProps = virtualDOM.props || {}
+  const oldProps = (oldVirtualDOM && oldVirtualDOM.props) || {}
+
+  Object.keys(newProps).forEach(propName => {
+    const newPropValue = newProps[propName]
+    const oldPropValue = oldProps[propName]
+
+    if (newPropValue !== oldPropValue) {
       if (propName === 'className') {
         // class 属性
-        newElement.setAttribute('class', value)
+        newElement.setAttribute('class', newPropValue)
       } else if (propName.slice(0, 2) === 'on') {
         // 事件绑定
-        newElement.addEventListener(propName.slice(2).toLowerCase(), value)
+        const eventName = propName.slice(2).toLowerCase()
+        newElement.removeEventListener(eventName, oldPropValue)
+        newElement.addEventListener(eventName, newPropValue)
       } else if (propName === 'value' || propName === 'checked') {
-        newElement[propName] = value
-      } else {
-        newElement.setAttribute(propName, value)
+        newElement[propName] = newPropValue
+      } else if (propName !== 'children') {
+        newElement.setAttribute(propName, newPropValue)
+      }
+    }
+  })
+
+  // 删除属性
+  Object.keys(oldProps).forEach(propName => {
+    if (!newProps[propName]) {
+      if (propName === 'className') {
+        newElement.removeAttribute('class')
+      } else if (propName.slice(0, 2) === 'on') {
+        // 删除事件绑定
+        const eventName = propName.slice(2).toLowerCase()
+        newElement.removeEventListener(propName, oldProps[propName])
+      } else if (propName !== 'children') {
+        newElement.removeAttribute(propName)
       }
     }
   })
