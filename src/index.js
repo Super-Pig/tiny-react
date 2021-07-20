@@ -18,9 +18,9 @@ import TinyReact from "./TinyReact"
 //   </div>
 // )
 
-function Garry(props = {}) {
+function Garry(props) {
   return <div>
-    Hello
+    {props.title}
     <Peng />
   </div>
 }
@@ -29,5 +29,5 @@ function Peng() {
   return <h1>Peng</h1>
 }
 
-TinyReact.render(<Garry className='container' />, document.getElementById('root'))
+TinyReact.render(<Garry title='Hello' />, document.getElementById('root'))
 
