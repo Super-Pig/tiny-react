@@ -18,16 +18,29 @@ import TinyReact from "./TinyReact"
 //   </div>
 // )
 
-function Garry(props) {
-  return <div>
-    {props.title}
-    <Peng />
-  </div>
-}
+// function Garry(props) {
+//   return <div className={props.className}>
+//     {props.title}
+//     <Peng />
+//   </div>
+// }
 
 function Peng() {
   return <h1>Peng</h1>
 }
 
-TinyReact.render(<Garry title='Hello' />, document.getElementById('root'))
+class Garry extends TinyReact.Component {
+  constructor(props) {
+    super(props)
+  }
+
+  render() {
+    return <div className={this.props.className}>
+      {this.props.title}
+      <Peng />
+    </div>
+  }
+}
+
+TinyReact.render(<Garry title='Hello' className='container' />, document.getElementById('root'))
 
