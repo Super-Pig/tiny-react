@@ -6,7 +6,12 @@ import createDOMElement from "./createDOMElement"
  * @param {*} container 
  */
 export default function mountNativeElement(virtualDOM, container) {
-  let newElement = createDOMElement(virtualDOM)
+  const newElement = createDOMElement(virtualDOM)
+  const component = virtualDOM.component
+
+  if (component) {
+    component.setDOM(newElement)
+  }
 
   container.appendChild(newElement)
 }
