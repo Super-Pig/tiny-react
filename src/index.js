@@ -41,9 +41,9 @@ import TinyReact from "./TinyReact"
 //   </div>
 // }
 
-// function Peng() {
-//   return <h1>Peng</h1>
-// }
+function Peng() {
+  return <h1>Peng</h1>
+}
 
 class Garry extends TinyReact.Component {
   constructor(props) {
@@ -76,6 +76,7 @@ class Garry extends TinyReact.Component {
 
 TinyReact.render(<Garry title='Garry' />, document.getElementById('root'))
 
-// setTimeout(()=>{
-//   TinyReact.render(modifyDOM, document.getElementById('root'))
-// }, 2000)
+setTimeout(()=>{
+  // TinyReact.render(<Garry title='Peng' />, document.getElementById('root'))
+  TinyReact.render(<Peng />, document.getElementById('root'))
+}, 2000)
