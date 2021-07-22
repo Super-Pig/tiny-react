@@ -78,6 +78,10 @@ import TinyReact from "./TinyReact"
 //     console.log(`componentDidUpdate - ${JSON.stringify(prevProps)}`)
 //   }
 
+//   componentWillUnmount() { 
+//     console.log('componentWillUnmount')
+//   }
+
 //   render() {
 //     return <div className={this.props.className}>
 //       {this.props.title}
@@ -98,29 +102,32 @@ import TinyReact from "./TinyReact"
 // }, 2000)
 
 
-// class DemoRef extends TinyReact.Component {
-//   constructor(props) {
-//     super(props)
+class DemoRef extends TinyReact.Component {
+  constructor(props) {
+    super(props)
 
-//     this.handleClick = this.handleClick.bind(this)
-//   }
+    this.handleClick = this.handleClick.bind(this)
+  }
 
-//   handleClick() {
-//     console.log(this.input.value)
-//     console.log(this.garry)
-//   }
+  handleClick() {
+    console.log(this.input.value)
+    console.log(this.garry)
+  }
 
-//   render() {
-//     return <div>
-//       <input type='text' ref={input => { this.input = input }} />
-//       <button onClick={this.handleClick}>按钮</button>
-//       <Garry title='Garry' ref={garry => { this.garry = garry }} />
-//     </div>
-//   }
-// }
+  componentWillUnmount() {
+    console.log('componentWillUnmount')
+  }
+
+  render() {
+    return <div>
+      <input type='text' ref={input => { this.input = input }} />
+      <button onClick={this.handleClick}>按钮</button>
+      {/* <Garry title='Garry' ref={garry => { this.garry = garry }} /> */}
+    </div>
+  }
+}
 
 // TinyReact.render(<DemoRef />, document.getElementById('root'))
-
 
 class KeyDemo extends TinyReact.Component {
   constructor(props) {
@@ -167,7 +174,9 @@ class KeyDemo extends TinyReact.Component {
       <ul>
         {
           this.state.persons.map(person => (
-            <li key={person.id}>{person.name}</li>
+            <li key={person.id}>{person.name}
+              <DemoRef />
+            </li>
           ))
         }
       </ul>
