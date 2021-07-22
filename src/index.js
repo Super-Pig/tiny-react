@@ -155,7 +155,9 @@ class KeyDemo extends TinyReact.Component {
 
     // newState.persons.push(newState.persons.shift())
 
-    newState.persons.splice(1, 0, { id: 100, name: 'sp' })
+    // newState.persons.splice(1, 0, { id: 100, name: 'sp' })
+
+    newState.persons.shift()
 
     this.setState(newState)
   }
