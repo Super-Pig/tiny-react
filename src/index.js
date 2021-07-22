@@ -153,7 +153,9 @@ class KeyDemo extends TinyReact.Component {
   handleClick() {
     const newState = JSON.parse(JSON.stringify(this.state))
 
-    newState.persons.push(newState.persons.shift())
+    // newState.persons.push(newState.persons.shift())
+
+    newState.persons.splice(1, 0, { id: 100, name: 'sp' })
 
     this.setState(newState)
   }

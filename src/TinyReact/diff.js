@@ -69,6 +69,9 @@ export default function diff(virtualDOM, container, oldDOM) {
             if (oldDOM.childNodes[i] && oldDOM.childNodes[i] !== domElement) {
               oldDOM.insertBefore(domElement, oldDOM.childNodes[i])
             }
+          } else {
+            // 新增元素
+            mountElement(child, oldDOM, oldDOM.childNodes[i])
           }
         }
       })
