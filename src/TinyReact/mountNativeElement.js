@@ -4,8 +4,9 @@ import createDOMElement from "./createDOMElement"
  * 渲染普通节点
  * @param {*} virtualDOM 
  * @param {*} container 
+ * @param {*} oldDOM
  */
-export default function mountNativeElement(virtualDOM, container) {
+export default function mountNativeElement(virtualDOM, container, oldDOM) {
   const newElement = createDOMElement(virtualDOM)
   const component = virtualDOM.component
 
@@ -13,5 +14,9 @@ export default function mountNativeElement(virtualDOM, container) {
     component.setDOM(newElement)
   }
 
-  container.appendChild(newElement)
+  if(oldDOM){
+    container.replaceChild(newElement, oldDOM)
+  } else {
+    container.appendChild(newElement)
+  }
 }

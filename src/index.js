@@ -62,6 +62,18 @@ class Garry extends TinyReact.Component {
     })
   }
 
+  componentWillReceiveProps(nextProps) {
+    console.log(`componentWillReceiveProps - ${JSON.stringify(nextProps)}`)
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    console.log(`componentWillUpdate - ${JSON.stringify(nextProps)}`)
+  }
+
+  componentDidUpdate(prevProps, preState) {
+    console.log(`componentDidUpdate - ${JSON.stringify(prevProps)}`)
+  }
+
   render() {
     return <div className={this.props.className}>
       {this.props.title}
@@ -76,7 +88,7 @@ class Garry extends TinyReact.Component {
 
 TinyReact.render(<Garry title='Garry' />, document.getElementById('root'))
 
-setTimeout(()=>{
-  // TinyReact.render(<Garry title='Peng' />, document.getElementById('root'))
-  TinyReact.render(<Peng />, document.getElementById('root'))
+setTimeout(() => {
+  TinyReact.render(<Garry title='Peng' />, document.getElementById('root'))
+  // TinyReact.render(<Peng />, document.getElementById('root'))
 }, 2000)
