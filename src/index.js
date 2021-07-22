@@ -41,9 +41,9 @@ import TinyReact from "./TinyReact"
 //   </div>
 // }
 
-function Peng() {
-  return <h1>Peng</h1>
-}
+// function Peng() {
+//   return <h1>Peng</h1>
+// }
 
 class Garry extends TinyReact.Component {
   constructor(props) {
@@ -60,6 +60,10 @@ class Garry extends TinyReact.Component {
     this.setState({
       title: 'New Title'
     })
+  }
+
+  componentDidMount() {
+    console.log('componentDidMount')
   }
 
   componentWillReceiveProps(nextProps) {
@@ -86,9 +90,33 @@ class Garry extends TinyReact.Component {
   }
 }
 
-TinyReact.render(<Garry title='Garry' />, document.getElementById('root'))
+// TinyReact.render(<Garry title='Garry' />, document.getElementById('root'))
 
-setTimeout(() => {
-  TinyReact.render(<Garry title='Peng' />, document.getElementById('root'))
-  // TinyReact.render(<Peng />, document.getElementById('root'))
-}, 2000)
+// setTimeout(() => {
+//   TinyReact.render(<Garry title='Peng' />, document.getElementById('root'))
+//   // TinyReact.render(<Peng />, document.getElementById('root'))
+// }, 2000)
+
+
+class DemoRef extends TinyReact.Component {
+  constructor(props) {
+    super(props)
+
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleClick() {
+    console.log(this.input.value)
+    console.log(this.garry)
+  }
+
+  render() {
+    return <div>
+      <input type='text' ref={input => { this.input = input }} />
+      <button onClick={this.handleClick}>按钮</button>
+      <Garry title='Garry' ref={garry => { this.garry = garry }} />
+    </div>
+  }
+}
+
+TinyReact.render(<DemoRef />, document.getElementById('root'))

@@ -3,7 +3,7 @@ import updateNodeElement from "./updateNodeElement"
 
 export default function createDOMElement(virtualDOM) {
   let newElement = null
-
+  
   if (virtualDOM.type === 'text') {
     // 文本节点
     newElement = document.createTextNode(virtualDOM.props.textContent)
@@ -19,6 +19,10 @@ export default function createDOMElement(virtualDOM) {
   newElement._virtualDOM = virtualDOM
 
   virtualDOM.children.map(child => mountElement(child, newElement))
+
+  if(virtualDOM.props && virtualDOM.props.ref) {
+    virtualDOM.props.ref(newElement)
+  }
 
   return newElement
 }

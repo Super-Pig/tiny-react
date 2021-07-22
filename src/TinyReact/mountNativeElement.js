@@ -13,8 +13,8 @@ export default function mountNativeElement(virtualDOM, container, oldDOM) {
   if (component) {
     component.setDOM(newElement)
   }
-
-  if(oldDOM){
+  
+  if (oldDOM) {
     container.replaceChild(newElement, oldDOM)
   } else {
     container.appendChild(newElement)
