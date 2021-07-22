@@ -45,50 +45,50 @@ import TinyReact from "./TinyReact"
 //   return <h1>Peng</h1>
 // }
 
-class Garry extends TinyReact.Component {
-  constructor(props) {
-    super(props)
+// class Garry extends TinyReact.Component {
+//   constructor(props) {
+//     super(props)
 
-    this.state = {
-      title: 'Default Title'
-    }
+//     this.state = {
+//       title: 'Default Title'
+//     }
 
-    this.handleClick = this.handleClick.bind(this)
-  }
+//     this.handleClick = this.handleClick.bind(this)
+//   }
 
-  handleClick() {
-    this.setState({
-      title: 'New Title'
-    })
-  }
+//   handleClick() {
+//     this.setState({
+//       title: 'New Title'
+//     })
+//   }
 
-  componentDidMount() {
-    console.log('componentDidMount')
-  }
+//   componentDidMount() {
+//     console.log('componentDidMount')
+//   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log(`componentWillReceiveProps - ${JSON.stringify(nextProps)}`)
-  }
+//   componentWillReceiveProps(nextProps) {
+//     console.log(`componentWillReceiveProps - ${JSON.stringify(nextProps)}`)
+//   }
 
-  componentWillUpdate(nextProps, nextState) {
-    console.log(`componentWillUpdate - ${JSON.stringify(nextProps)}`)
-  }
+//   componentWillUpdate(nextProps, nextState) {
+//     console.log(`componentWillUpdate - ${JSON.stringify(nextProps)}`)
+//   }
 
-  componentDidUpdate(prevProps, preState) {
-    console.log(`componentDidUpdate - ${JSON.stringify(prevProps)}`)
-  }
+//   componentDidUpdate(prevProps, preState) {
+//     console.log(`componentDidUpdate - ${JSON.stringify(prevProps)}`)
+//   }
 
-  render() {
-    return <div className={this.props.className}>
-      {this.props.title}
+//   render() {
+//     return <div className={this.props.className}>
+//       {this.props.title}
 
-      <div>{this.state.title}</div>
-      <div>
-        <button onClick={this.handleClick}>改变 Title</button>
-      </div>
-    </div>
-  }
-}
+//       <div>{this.state.title}</div>
+//       <div>
+//         <button onClick={this.handleClick}>改变 Title</button>
+//       </div>
+//     </div>
+//   }
+// }
 
 // TinyReact.render(<Garry title='Garry' />, document.getElementById('root'))
 
@@ -98,25 +98,78 @@ class Garry extends TinyReact.Component {
 // }, 2000)
 
 
-class DemoRef extends TinyReact.Component {
+// class DemoRef extends TinyReact.Component {
+//   constructor(props) {
+//     super(props)
+
+//     this.handleClick = this.handleClick.bind(this)
+//   }
+
+//   handleClick() {
+//     console.log(this.input.value)
+//     console.log(this.garry)
+//   }
+
+//   render() {
+//     return <div>
+//       <input type='text' ref={input => { this.input = input }} />
+//       <button onClick={this.handleClick}>按钮</button>
+//       <Garry title='Garry' ref={garry => { this.garry = garry }} />
+//     </div>
+//   }
+// }
+
+// TinyReact.render(<DemoRef />, document.getElementById('root'))
+
+
+class KeyDemo extends TinyReact.Component {
   constructor(props) {
     super(props)
+
+    this.state = {
+      persons: [
+        {
+          id: '1',
+          name: 'garry'
+        },
+        {
+          id: '2',
+          name: 'nothin'
+        },
+        {
+          id: '3',
+          name: 'peng'
+        },
+        {
+          id: '4',
+          name: 'gan'
+        },
+      ]
+    }
 
     this.handleClick = this.handleClick.bind(this)
   }
 
   handleClick() {
-    console.log(this.input.value)
-    console.log(this.garry)
+    const newState = JSON.parse(JSON.stringify(this.state))
+
+    newState.persons.push(newState.persons.shift())
+
+    this.setState(newState)
   }
 
   render() {
     return <div>
-      <input type='text' ref={input => { this.input = input }} />
-      <button onClick={this.handleClick}>按钮</button>
-      <Garry title='Garry' ref={garry => { this.garry = garry }} />
+      <ul>
+        {
+          this.state.persons.map(person => (
+            <li key={person.id}>{person.name}</li>
+          ))
+        }
+      </ul>
+      <button onClick={this.handleClick}>Click</button>
     </div>
   }
 }
 
-TinyReact.render(<DemoRef />, document.getElementById('root'))
+TinyReact.render(<KeyDemo />, document.getElementById('root'))
