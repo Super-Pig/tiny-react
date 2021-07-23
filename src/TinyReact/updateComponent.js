@@ -18,7 +18,7 @@ export default function updateComponent(virtualDOM, oldComponent, oldDOM, contai
     // 获取最新的 virtualDOM
     let nextVirtualDOM = oldComponent.render()
 
-    // 更新 component 组件示例对象
+    // 更新 component 组件实例对象
     nextVirtualDOM.component = oldComponent
 
     // 比对
