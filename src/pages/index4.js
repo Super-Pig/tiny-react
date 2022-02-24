@@ -1,5 +1,4 @@
-import TinyReact from "../TinyReact"
-
+import TinyReact from "../TinyReact";
 class Alert extends TinyReact.Component {
     constructor(props) {
         super(props)
@@ -52,10 +51,25 @@ class Alert extends TinyReact.Component {
 }
 
 
-const root = document.getElementById('root')
+class DemoRef extends TinyReact.Component {
+    constructor(props) {
+        super(props)
 
-TinyReact.render(<Alert name='garry' age={33} />, root)
+        this.handleClick = this.handleClick.bind(this)
+    }
 
-setTimeout(() => {
-    TinyReact.render(<Alert name='PENGGAN' age={33} />, root)
-}, 2000)
+    handleClick() {
+        console.log(this.input.value)
+        console.log(this.alert)
+    }
+
+    render() {
+        return <div>
+            <input type='text' ref={input => this.input = input} />
+            <button onClick={this.handleClick}>click me</button>
+            <Alert ref={alert => this.alert = alert} name='garry' age={33} />
+        </div>
+    }
+}
+
+TinyReact.render(<DemoRef />, document.getElementById('root'))
