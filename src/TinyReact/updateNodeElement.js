@@ -31,7 +31,7 @@ export default function updateNodeElement(newElement, virtualDOM, oldVirtualDOM)
       } else if (propName.slice(0, 2) === 'on') {
         // 删除事件绑定
         const eventName = propName.slice(2).toLowerCase()
-        newElement.removeEventListener(propName, oldProps[propName])
+        newElement.removeEventListener(eventName, oldProps[propName])
       } else if (propName !== 'children') {
         newElement.removeAttribute(propName)
       }

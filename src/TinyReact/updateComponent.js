@@ -1,6 +1,4 @@
 import diff from "./diff"
-import isFunctionComponent from "./isFunctionComponent"
-import isFunction from "./isFunction"
 
 export default function updateComponent(virtualDOM, oldComponent, oldDOM, container) {
   // 更新前的 props 和 state

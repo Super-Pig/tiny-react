@@ -32,7 +32,7 @@ export default function diff(virtualDOM, container, oldDOM) {
       updateNodeElement(oldDOM, virtualDOM, oldVirtualDOM)
       oldDOM._virtualDOM = virtualDOM
     }
-
+ 
     // 1. 将拥有 key 属性的子元素放置在一个单独的对象中
     const keyedElements = {}
 

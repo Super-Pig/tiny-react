@@ -6,10 +6,7 @@ export default class Component {
   }
 
   setState(state) {
-    this.state = {
-      ...this.state,
-      ...state
-    }
+    this.state = Object.assign({}, this.state, state)
 
     // 获取最新的要渲染的 virtualDOM 对象
     const virtualDOM = this.render()

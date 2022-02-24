@@ -1,7 +1,5 @@
-import mountElement from "./mountElement";
-import isFunction from "./isFunction";
 import isFunctionComponent from "./isFunctionComponent";
-import mountNativeElement from "./mountNativeElement";
+import mountElement from "./mountElement";
 
 export default function mountComponent(virtualDOM, container, oldDOM) {
   let nextVirtualDOM = null
@@ -19,11 +17,7 @@ export default function mountComponent(virtualDOM, container, oldDOM) {
     component = nextVirtualDOM.component
   }
 
-  if (isFunction(nextVirtualDOM)) {
-    mountComponent(nextVirtualDOM, container, oldDOM)
-  } else {
-    mountNativeElement(nextVirtualDOM, container, oldDOM)
-  }
+  mountElement(nextVirtualDOM, container, oldDOM)
 
   if (component) {
     component.componentDidMount()
