@@ -1,4 +1,5 @@
 import TinyReact from "../TinyReact";
+
 class Alert extends TinyReact.Component {
     constructor(props) {
         super(props)
