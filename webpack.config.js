@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 
 module.exports = {
-  entry: "./src/pages/index5.js",
+  entry: "./src/pages/index6.js",
   output: {
     path: path.resolve("dist"),
     filename: "bundle.js"
