@@ -2,6 +2,7 @@ import TinyReact from "../TinyReact";
 
 const states = []
 const setters = []
+const prevDepsArray = []
 let stateIndex = 0
 let depsIndex = 0
 
@@ -28,11 +29,6 @@ const useState = (initialState) => {
 
     return [state, setter]
 }
-
-
-const didMount = []
-const didUpdate = []
-let prevDepsArray = []
 
 const useEffect = (callback, depsArray) => {
     if (Object.prototype.toString.call(callback) !== '[object Function]') {
@@ -61,9 +57,32 @@ const useEffect = (callback, depsArray) => {
     }
 }
 
+const useReducer = (reducer, initialState) => {
+    const [state, setState] = useState(initialState)
+
+    const dispatch = action => {
+        setState(reducer(state, action))
+    }
+
+    return [state, dispatch]
+}
+
 function App() {
-    const [count, setCount] = useState(0)
+    const reducer = (state, action) => {
+        switch (action.type) {
+            case 'increment':
+                return state + 1
+            case 'decrement':
+                return state - 1
+            default:
+                return state
+        }
+    }
+
+    // const [count, setCount] = useState(0)
     const [name, setName] = useState('garry')
+
+    const [count, dispatch] = useReducer(reducer, 0)
 
     useEffect(() => {
         console.log('mounted')
@@ -78,7 +97,11 @@ function App() {
     }, [count])
 
     return <div>
-        <p>Count: {count} <button onClick={() => setCount(count + 1)}>+1</button></p>
+        {/* <p>Count: {count} <button onClick={() => setCount(count + 1)}>+1</button></p> */}
+        <p>Count: {count}
+            <button onClick={() => dispatch({ type: 'increment' })}>+1</button>
+            <button onClick={() => dispatch({ type: 'decrement' })}>-1</button>
+        </p>
         <p>Name: {name} <button onClick={() => setName('Penggan')}>change</button></p>
     </div>
 }
