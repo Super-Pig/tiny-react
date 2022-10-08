@@ -32,7 +32,7 @@ export default function diff(virtualDOM, container, oldDOM) {
       updateNodeElement(oldDOM, virtualDOM, oldVirtualDOM)
       oldDOM._virtualDOM = virtualDOM
     }
- 
+
     // 1. 将拥有 key 属性的子元素放置在一个单独的对象中
     const keyedElements = {}
 
@@ -61,7 +61,7 @@ export default function diff(virtualDOM, container, oldDOM) {
       virtualDOM.children.forEach((child, i) => {
         const key = child.props.key
 
-        if (key) {
+        if (key !== undefined) {
           const domElement = keyedElements[key]
 
           if (domElement) {
@@ -73,6 +73,8 @@ export default function diff(virtualDOM, container, oldDOM) {
             // 新增元素
             mountElement(child, oldDOM, oldDOM.childNodes[i])
           }
+        } else {
+          mountElement(child, oldDOM, oldDOM.childNodes[i])
         }
       })
     }
@@ -104,6 +106,10 @@ export default function diff(virtualDOM, container, oldDOM) {
             unmountNode(oldChild)
             i--
           }
+        }
+
+        for (let i = oldChildNodes.length - 1; i > virtualDOM.children.length - 1; i--) {
+          unmountNode(oldChildNodes[i])
         }
       }
     }

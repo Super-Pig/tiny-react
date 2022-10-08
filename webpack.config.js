@@ -1,9 +1,15 @@
+/*
+ * Copyright © 2020-2022 Ocean Galaxy Inc. All Rights Reserved.
+ * @Description: 
+ * @LastEditors: garry彭
+ * @LastEditTime: 2022-10-07 15:58:22
+ */
 const path = require("path")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 
 module.exports = {
-  entry: "./src/pages/index6.js",
+  entry: "./src/pages/test.js",
   output: {
     path: path.resolve("dist"),
     filename: "bundle.js"
