@@ -2,33 +2,28 @@
  * Copyright © 2020-2022 Ocean Galaxy Inc. All Rights Reserved.
  * @Description: 
  * @LastEditors: garry彭
- * @LastEditTime: 2022-10-08 14:28:26
+ * @LastEditTime: 2022-10-08 21:06:24
  */
 import TinyReact from "../TinyReact";
 
-const OldVdom = <div>
-    {
-        new Array(3).fill(0).map((_, index) => {
-            return <p key={index}>{index}</p>
-        })
+// const C = ({name}) => {
+//     return <h1>{name}</h1>
+// }
+
+class C extends TinyReact.Component {
+    constructor(props) {
+        super(props)
     }
 
-    <h1>other1</h1>
-    <h1>other2</h1>
-</div>
-
-const NewVdom = <div>
-    <h1>other1</h1>
-    <h2>other2</h2>
-    {
-        new Array(2).fill(0).map((_, index) => {
-            return <p key={index}>{index}</p>
-        })
+    render() {
+        return <h1>
+            {this.props.name}
+        </h1>
     }
-</div>
+}
 
-TinyReact.render(OldVdom, document.getElementById('root'))
+TinyReact.render(<C name='garry' />, document.getElementById('root'))
 
 setTimeout(() => {
-    TinyReact.render(NewVdom, document.getElementById('root'))
-}, 2000)
+    TinyReact.render(<C name='peng' />, document.getElementById('root'))
+}, 2000);

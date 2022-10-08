@@ -16,7 +16,7 @@ export default function diff(virtualDOM, container, oldDOM) {
   } else if (isFunction(virtualDOM)) {
     // 函数组件 or 类组件比对
     diffComponent(virtualDOM, oldVirtualDOM.component, oldDOM, container)
-  } else if (oldVirtualDOM && oldVirtualDOM.type !== virtualDOM.type && !isFunction(virtualDOM)) {
+  } else if (oldVirtualDOM && oldVirtualDOM.type !== virtualDOM.type) {
     // 普通元素组件 && 组件类型不相同
     const newElement = createDOMElement(virtualDOM)
 

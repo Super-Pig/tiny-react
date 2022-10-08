@@ -1,3 +1,9 @@
+/*
+ * Copyright © 2020-2022 Ocean Galaxy Inc. All Rights Reserved.
+ * @Description: 
+ * @LastEditors: garry彭
+ * @LastEditTime: 2022-10-08 21:10:49
+ */
 import diff from "./diff"
 
 export default class Component {
@@ -33,7 +39,7 @@ export default class Component {
   componentDidMount() { }
   componentWillReceiveProps(nextProps) { }
   shouldComponentUpdate(nextProps, nextState) {
-    return nextProps !== this.props && nextState !== this.state
+    return nextProps !== this.props || nextState !== this.state
   }
   componentWillUpdate(nextProps, nextState) { }
   componentDidUpdate(prevProps, preState) { }
