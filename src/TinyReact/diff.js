@@ -97,36 +97,6 @@ export default function diff(virtualDOM, container, oldDOM) {
       for (let i = oldChildNodes.length - 1; i > virtualDOM.children.length - 1; i--) {
         unmountNode(oldChildNodes[i])
       }
-
-      // if (hasNoKey) {
-      //   // 通过索引删除节点
-      //   for (let i = oldChildNodes.length - 1; i > virtualDOM.children.length - 1; i--) {
-      //     unmountNode(oldChildNodes[i])
-      //   }
-      // } else {
-      //   // 通过 key 属性删除节点
-      //   for (let i = 0; i < oldChildNodes.length; i++) {
-      //     let oldChild = oldChildNodes[i]
-      //     let oldChildKey = oldChild._virtualDOM.props.key
-      //     let found = false
-
-      //     for (let n = 0; n < virtualDOM.children.length; n++) {
-      //       if (oldChildKey === virtualDOM.children[n].props.key) {
-      //         found = true
-      //         break
-      //       }
-      //     }
-
-      //     if (!found) {
-      //       unmountNode(oldChild)
-      //       i--
-      //     }
-      //   }
-
-      //   for (let i = oldChildNodes.length - 1; i > virtualDOM.children.length - 1; i--) {
-      //     unmountNode(oldChildNodes[i])
-      //   }
-      // }
     }
   }
 }
