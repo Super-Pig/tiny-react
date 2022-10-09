@@ -2,7 +2,7 @@
  * Copyright © 2020-2022 Ocean Galaxy Inc. All Rights Reserved.
  * @Description: 
  * @LastEditors: garry彭
- * @LastEditTime: 2022-10-09 16:13:11
+ * @LastEditTime: 2022-10-09 16:20:32
  */
 import TinyReact from "../TinyReact";
 
@@ -25,10 +25,18 @@ class C extends TinyReact.Component {
     }
 
     handleClick() {
-        const data = this.state.data.slice()
-        data[0].name = 'c'
-
-        this.setState({data})
+        this.setState({
+            data: [{
+                key: 0,
+                name: 'c'
+            }, {
+                key: 2,
+                name: 'd'
+            }, {
+                key: 1,
+                name: 'b'
+            }]
+        })
     }
 
     render() {

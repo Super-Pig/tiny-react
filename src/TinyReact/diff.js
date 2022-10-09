@@ -75,7 +75,7 @@ export default function diff(virtualDOM, container, oldDOM) {
             mountElement(child, oldDOM, oldDOM.childNodes[i])
           }
         } else {
-          mountElement(child, oldDOM, oldDOM.childNodes[i])
+          diff(child, oldDOM, oldDOM.childNodes[i])
         }
       })
     }
