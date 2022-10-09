@@ -65,8 +65,9 @@ export default function diff(virtualDOM, container, oldDOM) {
           const domElement = keyedElements[key]
 
           if (domElement) {
-            // 3. 看看当前位置的元素是不是我们期望的元素
-            if (oldDOM.childNodes[i] && oldDOM.childNodes[i] !== domElement) {
+            if (oldDOM.childNodes[i] && oldDOM.childNodes[i] === domElement) {
+              diff(child, oldDOM, oldDOM.childNodes[i])
+            } else {
               oldDOM.insertBefore(domElement, oldDOM.childNodes[i])
             }
           } else {
