@@ -1,3 +1,9 @@
+/*
+ * Copyright © 2020-2022 Ocean Galaxy Inc. All Rights Reserved.
+ * @Description: 
+ * @LastEditors: garry彭
+ * @LastEditTime: 2022-10-09 17:19:11
+ */
 export default function updateNodeElement(newElement, virtualDOM, oldVirtualDOM) {
   const newProps = virtualDOM.props || {}
   const oldProps = (oldVirtualDOM && oldVirtualDOM.props) || {}
@@ -25,7 +31,7 @@ export default function updateNodeElement(newElement, virtualDOM, oldVirtualDOM)
 
   // 删除属性
   Object.keys(oldProps).forEach(propName => {
-    if (!newProps[propName]) {
+    if (newProps[propName] === undefined) {
       if (propName === 'className') {
         newElement.removeAttribute('class')
       } else if (propName.slice(0, 2) === 'on') {
