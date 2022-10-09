@@ -2,7 +2,7 @@
  * Copyright © 2020-2022 Ocean Galaxy Inc. All Rights Reserved.
  * @Description: 
  * @LastEditors: garry彭
- * @LastEditTime: 2022-10-09 16:20:32
+ * @LastEditTime: 2022-10-09 16:55:09
  */
 import TinyReact from "../TinyReact";
 
@@ -27,13 +27,13 @@ class C extends TinyReact.Component {
     handleClick() {
         this.setState({
             data: [{
-                key: 0,
+                key: 1,
                 name: 'c'
             }, {
                 key: 2,
                 name: 'd'
             }, {
-                key: 1,
+                key: 0,
                 name: 'b'
             }]
         })

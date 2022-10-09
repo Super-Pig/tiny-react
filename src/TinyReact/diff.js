@@ -57,11 +57,11 @@ export default function diff(virtualDOM, container, oldDOM) {
         const domElement = keyedElements[key]
 
         if (domElement) {
-          if (oldDOM.childNodes[i] && oldDOM.childNodes[i] === domElement) {
-            diff(child, oldDOM, oldDOM.childNodes[i])
-          } else {
+          if (oldDOM.childNodes[i] && oldDOM.childNodes[i] !== domElement) {
             oldDOM.insertBefore(domElement, oldDOM.childNodes[i])
           }
+
+          diff(child, oldDOM, oldDOM.childNodes[i])
         } else {
           // 新增元素
           mountElement(child, oldDOM, oldDOM.childNodes[i])
