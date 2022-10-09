@@ -49,36 +49,27 @@ export default function diff(virtualDOM, container, oldDOM) {
       }
     }
 
-    let hasNoKey = Object.keys(keyedElements).length === 0
+    // 更新子节点
+    virtualDOM.children.forEach((child, i) => {
+      const key = child.props.key
 
-    if (hasNoKey) {
-      // 比对子节点
-      virtualDOM.children.forEach((child, i) => {
-        diff(child, oldDOM, oldDOM.childNodes[i])
-      })
-    } else {
-      // 2. 循环 virtualDOM 的子元素，获取子元素的 key 属性
-      virtualDOM.children.forEach((child, i) => {
-        const key = child.props.key
+      if (key !== undefined) {
+        const domElement = keyedElements[key]
 
-        if (key !== undefined) {
-          const domElement = keyedElements[key]
-
-          if (domElement) {
-            if (oldDOM.childNodes[i] && oldDOM.childNodes[i] === domElement) {
-              diff(child, oldDOM, oldDOM.childNodes[i])
-            } else {
-              oldDOM.insertBefore(domElement, oldDOM.childNodes[i])
-            }
+        if (domElement) {
+          if (oldDOM.childNodes[i] && oldDOM.childNodes[i] === domElement) {
+            diff(child, oldDOM, oldDOM.childNodes[i])
           } else {
-            // 新增元素
-            mountElement(child, oldDOM, oldDOM.childNodes[i])
+            oldDOM.insertBefore(domElement, oldDOM.childNodes[i])
           }
         } else {
-          diff(child, oldDOM, oldDOM.childNodes[i])
+          // 新增元素
+          mountElement(child, oldDOM, oldDOM.childNodes[i])
         }
-      })
-    }
+      } else {
+        diff(child, oldDOM, oldDOM.childNodes[i])
+      }
+    })
 
     // 删除节点
     const oldChildNodes = oldDOM.childNodes
